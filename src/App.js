@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Data from "./componets/Data";
+import Header from "./componets/Header"
+import Result from "./componets/Result";
 
-function App() {
+
+const App = () => {
+
+  const [emi, setEmi] = useState(0);
+  const [totalPayable, setTotalPayable] = useState(0);
+  const [interestPayable, setInterestPayable] = useState(0);
+
+  const [resultAvailable, setResultAvailable] = useState(false);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      < Data
+        resultAvailable={resultAvailable}
+        setResultAvailable={setResultAvailable}
+        setEmi={setEmi}
+        setInterestPayable={setInterestPayable}
+        setTotalPayable={setTotalPayable}
+      />
+      {resultAvailable && <Result
+        emi={emi}
+        totalPayable={totalPayable}
+        interestPayable={interestPayable}
+      />}
     </div>
   );
 }
